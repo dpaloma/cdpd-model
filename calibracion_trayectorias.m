@@ -91,111 +91,111 @@ beta = 1.2;
 alpha = 10;
 rho = 0.1;
 x0 = [a,delta,sigma,beta,alpha,rho];
-% % Calibración de los parámetros para cada uno de los trimestre
-% for i = 1:13
-%     disp(i)
-%     F1 = num_fechas(i,1);
-%     F2 = num_fechas(i,2);
-%     HF1 = H(:,2)>=F1;   HF2 = H(:,2)<=F2;
-%     HT = H(logical(HF1.*HF2),3);
-%     RT = exp(-HT/100);
-%     lambda_0 = HT(1);
-% 
-%     options = optimset('MaxFunEvals',700,'TolFun',1e-5,'MaxIter',10000);
-%     % options = optimset('TolFun',1e-5);
-%     % options = optimoptions(@lsqnonlin,'Algorithm','levenberg-marquardt',...
-%     %     'MaxFunctionEvaluations',1500)
-% 
-%     fun = @(x) calibracion(52,lambda_0,x(1),x(2),x(3),x(4),x(5),x(6),RT);
-% 
-%     % [x,fval] = fminsearch(fun,x0,options)
-%     goal = 0;
-%     weight = 0;
-%     lb = eps+zeros(size(x0));
-%     ub = 100+zeros(size(x0));
-%     xx = fgoalattain(fun,x0,goal,weight,[],[],[],[],lb,ub,[],options);
-%     c_a(i) = xx(1);  c_lambda_0(i) = lambda_0;
-%     c_delta(i) = xx(2);  c_sigma(i) = xx(3);
-%     c_beta(i) = xx(4);   c_alpha(i) = xx(5);
-%     c_rho(i) = xx(6);
-% %     x0 =xx;
-% end
-% 
-% for i = 14:15
-%     disp(i)
-%     F1 = num_fechas(i,1);
-%     F2 = num_fechas(i,2);
-%     HF1 = H(:,2)>=F1;   HF2 = H(:,2)<=F2;
-%     HT = H(logical(HF1.*HF2),3);
-%     RT = exp(-HT/100);
-%     lambda_0 = HT(1);
-% 
-%     options = optimset('MaxFunEvals',700,'TolFun',1e-5,'MaxIter',10000);
-%     % options = optimset('TolFun',1e-5);
-%     % options = optimoptions(@lsqnonlin,'Algorithm','levenberg-marquardt',...
-%     %     'MaxFunctionEvaluations',1500)
-% 
-%     fun = @(x) calibracion(52,lambda_0,x(1),x(2),x(3),x(4),x(5),x(6),RT);
-% 
-%     % [x,fval] = fminsearch(fun,x0,options)
-%     goal = 0;
-%     weight = 0;
-%     lb = eps+zeros(size(x0));
-%     ub = 1000+zeros(size(x0));
-%     xx = fgoalattain(fun,x0,goal,weight,[],[],[],[],lb,ub,[],options);
-%     c_a(i) = xx(1);  c_lambda_0(i) = lambda_0;
-%     c_delta(i) = xx(2);  c_sigma(i) = xx(3);
-%     c_beta(i) = xx(4);   c_alpha(i) = xx(5);
-%     c_rho(i) = xx(6);
-% %     x0 =xx;
-% end
-% 
-% for i = 16:21
-%     disp(i)
-%     F1 = num_fechas(i,1);
-%     F2 = num_fechas(i,2);
-%     HF1 = H(:,2)>=F1;   HF2 = H(:,2)<=F2;
-%     HT = H(logical(HF1.*HF2),3);
-%     RT = exp(-HT/100);
-%     lambda_0 = HT(1);
-% 
-%     options = optimset('MaxFunEvals',700,'TolFun',1e-5,'MaxIter',10000);
-%     % options = optimset('TolFun',1e-5);
-%     % options = optimoptions(@lsqnonlin,'Algorithm','levenberg-marquardt',...
-%     %     'MaxFunctionEvaluations',1500)
-% 
-%     fun = @(x) calibracion(52,lambda_0,x(1),x(2),x(3),x(4),x(5),x(6),RT);
-% 
-%     % [x,fval] = fminsearch(fun,x0,options)
-%     goal = 0;
-%     weight = 0;
-%     lb = eps+zeros(size(x0));
-%     ub = 100+zeros(size(x0));
-%     xx = fgoalattain(fun,x0,goal,weight,[],[],[],[],lb,ub,[],options);
-%     c_a(i) = xx(1);  c_lambda_0(i) = lambda_0;
-%     c_delta(i) = xx(2);  c_sigma(i) = xx(3);
-%     c_beta(i) = xx(4);   c_alpha(i) = xx(5);
-%     c_rho(i) = xx(6);
-% %     x0 =xx;
-% end
-% P = [c_a, c_lambda_0, c_delta, c_sigma, c_beta, c_alpha, c_rho];
+% Calibración de los parámetros para cada uno de los trimestre
+for i = 1:13
+    disp(i)
+    F1 = num_fechas(i,1);
+    F2 = num_fechas(i,2);
+    HF1 = H(:,2)>=F1;   HF2 = H(:,2)<=F2;
+    HT = H(logical(HF1.*HF2),3);
+    RT = exp(-HT/100);
+    lambda_0 = HT(1);
 
-% ZZ = esp_lambda(1/52,xx(1),lambda_0/100,xx(2),xx(3),xx(4),xx(5),xx(6))
-% Z = esp_lambda(2/52,xx(1),lambda_0/100,xx(2),xx(3),xx(4),xx(5),xx(6))
-% % 
-% parametros = [xx(1),xx(2),xx(3),xx(4),xx(5),xx(6)];
+    options = optimset('MaxFunEvals',700,'TolFun',1e-5,'MaxIter',10000);
+    % options = optimset('TolFun',1e-5);
+    % options = optimoptions(@lsqnonlin,'Algorithm','levenberg-marquardt',...
+    %     'MaxFunctionEvaluations',1500)
+
+    fun = @(x) calibracion(52,lambda_0,x(1),x(2),x(3),x(4),x(5),x(6),RT);
+
+    % [x,fval] = fminsearch(fun,x0,options)
+    goal = 0;
+    weight = 0;
+    lb = eps+zeros(size(x0));
+    ub = 100+zeros(size(x0));
+    xx = fgoalattain(fun,x0,goal,weight,[],[],[],[],lb,ub,[],options);
+    c_a(i) = xx(1);  c_lambda_0(i) = lambda_0;
+    c_delta(i) = xx(2);  c_sigma(i) = xx(3);
+    c_beta(i) = xx(4);   c_alpha(i) = xx(5);
+    c_rho(i) = xx(6);
+%     x0 =xx;
+end
+
+for i = 14:15
+    disp(i)
+    F1 = num_fechas(i,1);
+    F2 = num_fechas(i,2);
+    HF1 = H(:,2)>=F1;   HF2 = H(:,2)<=F2;
+    HT = H(logical(HF1.*HF2),3);
+    RT = exp(-HT/100);
+    lambda_0 = HT(1);
+
+    options = optimset('MaxFunEvals',700,'TolFun',1e-5,'MaxIter',10000);
+    % options = optimset('TolFun',1e-5);
+    % options = optimoptions(@lsqnonlin,'Algorithm','levenberg-marquardt',...
+    %     'MaxFunctionEvaluations',1500)
+
+    fun = @(x) calibracion(52,lambda_0,x(1),x(2),x(3),x(4),x(5),x(6),RT);
+
+    % [x,fval] = fminsearch(fun,x0,options)
+    goal = 0;
+    weight = 0;
+    lb = eps+zeros(size(x0));
+    ub = 1000+zeros(size(x0));
+    xx = fgoalattain(fun,x0,goal,weight,[],[],[],[],lb,ub,[],options);
+    c_a(i) = xx(1);  c_lambda_0(i) = lambda_0;
+    c_delta(i) = xx(2);  c_sigma(i) = xx(3);
+    c_beta(i) = xx(4);   c_alpha(i) = xx(5);
+    c_rho(i) = xx(6);
+%     x0 =xx;
+end
+
+for i = 16:21
+    disp(i)
+    F1 = num_fechas(i,1);
+    F2 = num_fechas(i,2);
+    HF1 = H(:,2)>=F1;   HF2 = H(:,2)<=F2;
+    HT = H(logical(HF1.*HF2),3);
+    RT = exp(-HT/100);
+    lambda_0 = HT(1);
+
+    options = optimset('MaxFunEvals',700,'TolFun',1e-5,'MaxIter',10000);
+    % options = optimset('TolFun',1e-5);
+    % options = optimoptions(@lsqnonlin,'Algorithm','levenberg-marquardt',...
+    %     'MaxFunctionEvaluations',1500)
+
+    fun = @(x) calibracion(52,lambda_0,x(1),x(2),x(3),x(4),x(5),x(6),RT);
+
+    % [x,fval] = fminsearch(fun,x0,options)
+    goal = 0;
+    weight = 0;
+    lb = eps+zeros(size(x0));
+    ub = 100+zeros(size(x0));
+    xx = fgoalattain(fun,x0,goal,weight,[],[],[],[],lb,ub,[],options);
+    c_a(i) = xx(1);  c_lambda_0(i) = lambda_0;
+    c_delta(i) = xx(2);  c_sigma(i) = xx(3);
+    c_beta(i) = xx(4);   c_alpha(i) = xx(5);
+    c_rho(i) = xx(6);
+%     x0 =xx;
+end
+P = [c_a, c_lambda_0, c_delta, c_sigma, c_beta, c_alpha, c_rho];
+
+ZZ = esp_lambda(1/52,xx(1),lambda_0/100,xx(2),xx(3),xx(4),xx(5),xx(6))
+Z = esp_lambda(2/52,xx(1),lambda_0/100,xx(2),xx(3),xx(4),xx(5),xx(6))
 % 
+parametros = [xx(1),xx(2),xx(3),xx(4),xx(5),xx(6)];
+
+
+[A,B] = calibracion(52,lambda_0,xx(1),xx(2),xx(3),xx(4),xx(5),xx(6),RT);
+
+% A = [2017,01,01];    AA = [2017,12,31];
+% A = datetime(A);    AA = datetime(AA);
+% dA = datenum(2017,01,01);    dAA = datenum(2017,12,31);
 % 
-% [A,B] = calibracion(52,lambda_0,xx(1),xx(2),xx(3),xx(4),xx(5),xx(6),RT);
-% 
-% % A = [2017,01,01];    AA = [2017,12,31];
-% % A = datetime(A);    AA = datetime(AA);
-% % dA = datenum(2017,01,01);    dAA = datenum(2017,12,31);
-% % 
-% % [~, I2017] = sort(H((H(:,1)==2017),1));
-% % Z = min(H((H(:,1)==2017),2));
-% % ZZ = recuperar_fecha(Z);
-% z = datenum(ZZ);
+% [~, I2017] = sort(H((H(:,1)==2017),1));
+% Z = min(H((H(:,1)==2017),2));
+% ZZ = recuperar_fecha(Z);
+z = datenum(ZZ);
 %%
 % Gráficos de las traytectorias utilizando parámetros
 
@@ -814,6 +814,7 @@ function [t_obs,trayec,dt,lt] = trayectoria(xx,lambda_0,H,num_fechas,FS,FE)
     trayec = zeros(size(t_obs));
     ZZ = size(t_obs);
     ZZ = ZZ(2);
+    Z = 0;
     for i = 1:ZZ
 %         disp(i)
         if any(floor(dt*10000)==floor(t_obs(i)*10000))
